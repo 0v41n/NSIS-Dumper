@@ -71,7 +71,7 @@ fn main() {
         println!("NSIS signature found at index {}", index);
 
         /* retrieves the zip file */
-        let mut zip = contents.split_off(index);
+        let mut zip = contents.split_off(index-4);
 
         /* checks whether the certificate signature is present */
         let certificate = check_certificate_signature(&zip);
@@ -83,7 +83,7 @@ fn main() {
         }
 
         /* put the contents of the 7zip in dump.7z */
-        match fs::write("dump.7z", patch_7z(&zip)) {
+        match fs::write("dump.7z", &zip) {
             Ok(_) => println!("The dump.7z file has been successfully created."),
             Err(e) => println!(
                 "An error has occurred, the dump.7z file already exists, Error : {}",
@@ -146,18 +146,4 @@ fn check_certificate_signature(contents: &[u8]) -> Option<usize> {
 
     /* return None if no signature is found */
     None
-}
-
-/* function for patching 7zip by adding 4 bytes (0x00) */
-fn patch_7z(contents: &[u8]) -> Vec<u8> {
-    /* create an editable copy of the data */
-    let mut data = contents.to_vec();
-
-    /* loop to add the 4 bytes (0x00)*/
-    for _ in 0..4 {
-        data.insert(0, 0x00);
-    }
-
-    /* returns the patch bytes from the 7z file */
-    return data;
 }
