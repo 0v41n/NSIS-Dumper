@@ -28,11 +28,11 @@ This project is designed to facilitate malware analysis and reverse engineering.
 </p>
 
 ## Installation
-* Clone the project: `git clone https://github.com/Yvainix/NSIS-Dumper.git`
+* Clone the project: `git clone https://github.com/0v41n/NSIS-Dumper.git`
 * Go to the project directory: `cd NSIS-Dumper`
 * Compile the project: `cargo run`
 
-Alternatively, you can download the pre-compiled executable from the [Releases](https://github.com/Yvainix/NSIS-Dumper/releases) section. 
+Alternatively, you can download the pre-compiled executable from the [Releases](https://github.com/0v41n/NSIS-Dumper/releases) section. 
 ## Usage
 * Run the project : `NSIS-Dumper.exe NSIS_file.exe`
 
